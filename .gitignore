@@ -1,8 +1,10 @@
 # Ignore downloads folder
 downloads/
 
-# Ignore all python files inside the training folder
+# Ignore scripts and python files inside the training folder
 training/*.py
+run.bat
+training/run.bat
 
 # Standard Python virtual environment and cache folders
 __pycache__/
