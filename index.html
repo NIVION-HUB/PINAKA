@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINAKA Technical Approach Slide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background-color: #f0f0f0; 
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+
+        #slide {
+            width: 1920px;
+            height: 1080px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform-origin: center center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px;
+            padding: 0 50px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        .logo-nivion {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a365d;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-nivion span { color: #3182ce; font-size: 50px; }
+        
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 55px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #000;
+        }
+        .logo-sih {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c5282;
+            text-align: right;
+            line-height: 1.1;
+        }
+
+        /* MAIN CONTENT */
+        .content {
+            display: flex;
+            flex: 1;
+            padding: 30px 50px;
+            gap: 40px;
+        }
+
+        /* LEFT COLUMN (Text) */
+        .left-col {
+            flex: 0.52;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .section {
+            background: #fdfdfd;
+            padding: 15px 25px;
+            border-left: 5px solid #3182ce;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a202c;
+            text-transform: uppercase;
+        }
+        .bullet {
+            font-size: 21px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            color: #2d3748;
+        }
+        .bullet strong {
+            font-weight: 700;
+            color: #000;
+        }
+        .sub-bullet {
+            font-size: 19px;
+            margin-left: 20px;
+            margin-bottom: 8px;
+            color: #4a5568;
+            position: relative;
+        }
+        .sub-bullet::before {
+            content: "•";
+            position: absolute;
+            left: -15px;
+            color: #3182ce;
+        }
+        
+        .logos-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            align-items: center;
+        }
+        .logos-row span {
+            font-size: 22px;
+            font-weight: bold;
+            color: #718096;
+            background: #edf2f7;
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        /* RIGHT COLUMN (Diagram) */
+        .right-col {
+            flex: 0.48;
+            position: relative;
+            background: #fbfbfc;
+            border-radius: 15px;
+            border: 2px dashed #cbd5e0;
+        }
+        
+        .node {
+            position: absolute;
+            background: #fff;
+            border: 2px solid #a0aec0;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+        .node .icon { font-size: 50px; }
+        .node .label { font-size: 20px; font-weight: 700; color: #1a202c; line-height: 1.2; }
+        .node .detail { font-size: 15px; color: #4a5568; line-height: 1.3; }
+        
+        /* Node Positions */
+        #node-mic { top: 30px; left: 40px; border-color: #2b6cb0; }
+        #node-dma { top: 210px; left: 40px; }
+        #node-dsp { top: 390px; left: 40px; }
+        #node-tflm { top: 600px; left: 40px; border-color: #2f855a; }
+        
+        #node-model { top: 600px; left: 450px; width: 300px; border-color: #d69e2e; }
+        #node-decision { top: 390px; left: 450px; width: 300px; }
+        #node-abort { top: 120px; left: 450px; width: 300px; border-color: #e53e3e; border-width: 3px; background: #fff5f5; }
+
+        /* SVG ARROWS */
+        svg.arrows {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+        .path-line {
+            fill: none; stroke: #4a5568; stroke-width: 3px;
+        }
+        .path-dashed {
+            fill: none; stroke: #a0aec0; stroke-width: 3px; stroke-dasharray: 8, 8;
+        }
+
+        /* FOOTER */
+        .footer {
+            height: 60px;
+            background-color: #f8f9fa;
+            border-top: 2px solid #e2e8f0;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 22px; font-weight: 700; color: #2d3748;
+        }
+        .footer span { margin: 0 10px; }
+        .footer .highlight { color: #3182ce; }
+    </style>
+</head>
+<body>
+    <div id="slide">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-nivion"><span>&infin;</span> NIVION</div>
+            <div class="title">TECHNICAL APPROACH</div>
+            <div class="logo-sih">
+                SMART INDIA<br>HACKATHON<br><span style="color:#000;">2026</span>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- LEFT COLUMN -->
+            <div class="left-col">
+                
+                <div class="section">
+                    <div class="section-title">1. Edge Hardware & Microcontrollers</div>
+                    <div class="bullet"><strong>Microcontroller:</strong> ESP-WROOM-32 (Dual-Core 240MHz Xtensa LX6)</div>
+                    <div class="sub-bullet">Provides parallel execution of DSP and ML inference within 520KB SRAM.</div>
+                    <div class="bullet"><strong>Audio Sensor:</strong> INMP441 MEMS I2S Microphone</div>
+                    <div class="sub-bullet">Direct digital output via I2S protocol eliminates external ADCs. 61 dBA SNR perfectly suited for far-field voice capture.</div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">2. Data Synthesis & AI Pipeline (Host)</div>
+                    <div class="bullet"><strong>Combinatorial Augmentation:</strong></div>
+                    <div class="sub-bullet">Simulates harsh aerospace environments (Launch rumble, G-force clipping, Space helmet muffling) by randomly chaining audio DSP effects via Audiomentations.</div>
+                    <div class="bullet"><strong>Massive Negative Padding (Anti-False Positives):</strong></div>
+                    <div class="sub-bullet">Model strictly trained against 18,000+ real-world environmental noises (ESC-50) and conversational human speech (Google Speech Commands).</div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">3. TinyML Inference Engine (ESP32)</div>
+                    <div class="bullet"><strong>Model Architecture:</strong> Depthwise Separable CNN (DS-CNN)</div>
+                    <div class="sub-bullet">Decouples spatial and depth convolutions, reducing MAC operations and parameter count by >80% compared to standard CNNs.</div>
+                    <div class="bullet"><strong>Quantization:</strong> MLIR Post-Training Integer (INT8)</div>
+                    <div class="sub-bullet">Compresses 32-bit floating point model to a bare-metal ~35KB C-byte array.</div>
+                    <div class="logos-row">
+                        <span>C++11</span>
+                        <span>TensorFlow Lite Micro</span>
+                        <span>Python 3.10</span>
+                        <span>Librosa</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Diagram) -->
+            <div class="right-col">
+                
+                <div class="node" id="node-mic">
+                    <div class="icon">🎙️</div>
+                    <div class="label">Audio Capture</div>
+                    <div class="detail">INMP441 Microphone<br>Ambient Aerospace Noise</div>
+                </div>
+
+                <div class="node" id="node-dma">
+                    <div class="icon">🖧</div>
+                    <div class="label">I2S & DMA Transfer</div>
+                    <div class="detail">Zero-CPU Audio Buffering<br>16-bit PCM @ 16kHz</div>
+                </div>
+
+                <div class="node" id="node-dsp">
+                    <div class="icon">📊</div>
+                    <div class="label">DSP Pre-processing</div>
+                    <div class="detail">1-Second Sliding Window<br>512 N-FFT extraction to<br>49x40 Log-Mel Spectrogram</div>
+                </div>
+
+                <div class="node" id="node-tflm">
+                    <div class="icon">🧠</div>
+                    <div class="label">TinyML Execution</div>
+                    <div class="detail">TensorFlow Lite Micro<br>INT8 Inference Loop</div>
+                </div>
+
+                <div class="node" id="node-model">
+                    <div class="icon">📦</div>
+                    <div class="label">pinaka_model.cc</div>
+                    <div class="detail">Quantized DS-CNN Array<br>Loaded directly into ESP32 PROGMEM</div>
+                </div>
+
+                <div class="node" id="node-decision">
+                    <div class="icon">⚖️</div>
+                    <div class="label">Threshold Confidence</div>
+                    <div class="detail">Does Matrix Output > 90%<br>match "PINAKA" signature?</div>
+                </div>
+
+                <div class="node" id="node-abort">
+                    <div class="icon">🎙️</div>
+                    <div class="label" style="color:#2b6cb0;">WAKE WORD DETECTED</div>
+                    <div class="detail">Activate Speech AI<br>Stream to Remote ASR Cloud</div>
+                </div>
+
+                <!-- SVG Arrows -->
+                <svg class="arrows">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#4a5568" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Downwards flow -->
+                    <line x1="165" y1="160" x2="165" y2="210" class="path-line" marker-end="url(#arrowhead)" />
+                    <line x1="165" y1="340" x2="165" y2="390" class="path-line" marker-end="url(#arrowhead)" />
+                    <line x1="165" y1="520" x2="165" y2="600" class="path-line" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Bottom right connection -->
+                    <line x1="450" y1="665" x2="320" y2="665" class="path-dashed" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Upwards flow to Decision -->
+                    <path d="M 290 640 C 600 640, 600 520, 600 500" class="path-line" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Decision to Abort -->
+                    <line x1="600" y1="390" x2="600" y2="260" class="path-line" marker-end="url(#arrowhead)" />
+                    
+                    <!-- Decision No - Loop back -->
+                    <path d="M 750 450 C 850 450, 850 270, 290 270" class="path-line" marker-end="url(#arrowhead)" />
+                    <text x="760" y="440" fill="#4a5568" font-size="16" font-weight="bold">No (Loop back)</text>
+                    <text x="610" y="340" fill="#c53030" font-size="16" font-weight="bold">Yes (Match)</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <span>Hardware Firmware: <span class="highlight">ESP32 I2S DMA</span></span> | 
+            <span>Algorithm: <span class="highlight">INT8 DS-CNN</span></span> | 
+            <span>Target RAM: <span class="highlight">< 256KB</span></span> | 
+            <span>Demo: <span class="highlight">PROJECT PINAKA</span></span>
+        </div>
+    </div>
+
+    <script>
+        function resizeSlide() {
+            const slide = document.getElementById('slide');
+            const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080) * 0.95; 
+            slide.style.transform = 'scale(' + scale + ')';
+        }
+        window.addEventListener('resize', resizeSlide);
+        window.onload = resizeSlide;
+    </script>
+</body>
+</html>

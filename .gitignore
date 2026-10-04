@@ -1,0 +1,17 @@
+# Ignore downloads folder
+downloads/
+
+# Ignore all python files inside the training folder
+training/*.py
+
+# Standard Python virtual environment and cache folders
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.env
+
+# (The firmware folder, README.md, all .md files, dataset, and output folders 
+# are automatically kept because they are not listed here!)

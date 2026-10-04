@@ -1,0 +1,35 @@
+
+================================================================================
+  PROJECT PINAKA — TRAINING REPORT v3.0 (FINAL)
+  2026-10-04 17:54:02
+================================================================================
+
+DATASET
+  Positive (Pinaka):          5940
+  Negative (Total):           20696
+    - Environmental (ESC-50): 7298
+    - Real Speech (Google):   10000
+    - TTS Speech (Decoys):    2898
+    - Synthetic Noise:        500
+  GRAND TOTAL:                26636
+
+MODEL
+  Architecture:               DS-CNN (Depthwise Separable CNN)
+  Parameters:                 ~18K
+  Quantization:               INT8
+  Size:                       36.0 KB
+  Epochs:                     64 / 80
+  Best Val Accuracy:          99.06%
+
+COMPLIANCE (ISRO SIH-26172)
+  RAM < 256 KB:               PASS (36.0 KB)
+  No pre-trained transformers: PASS
+  Open-source only:           PASS
+  Custom keyword:             PASS ("PINAKA")
+
+OUTPUT
+  output/pinaka_model.tflite
+  output/pinaka_model.cc
+  output/pinaka_model.h
+  output/pinaka_full.keras
+================================================================================
